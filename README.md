@@ -10,7 +10,7 @@ Coavoid web app is a tool which enables the user to get informed about the amoun
 ## Get Started
 
 - Fork and clone the repo and cd into the project directory
-
+- run `npm install` to install the dependencies
 - Obtain the API keys (mapbox)[https://www.mapbox.com/] and (best time app)[https://besttime.app/app]. Make sure to use best time app private API key
 - create .env file in the root directory and add the folling code
 
