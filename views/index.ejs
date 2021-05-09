@@ -1,0 +1,37 @@
+<% layout('layouts/boilerplate') %>
+
+  <h1 class="text-center">Welcome to coavoid</h1>
+  <h2 class="text-center mt-3">Enter a location and we are good to go</h2>
+  <div class="row">
+    <div class="col-md-6 offset-3">
+      <form class="card p-3 mt-5 shadow" action="/place" method="POST">
+
+     <div class="form-group mb-3">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control mt-3"
+            name="search[venue_name]"
+            id="name"
+            placeholder="What is the place called"
+          />
+        </div>
+
+
+        
+        <div class="form-group">
+          <label for="location">Complete address</label>
+          <input
+            type="text"
+            class="form-control mt-3"
+            name="search[venue_address]"
+            id="location"
+            placeholder="Complete address goes here"
+          />
+        </div>
+        
+        <button type="submit" class="btn btn-primary mb-2 mt-3">Search</button>
+      </form>
+    </div>
+  </div>
+

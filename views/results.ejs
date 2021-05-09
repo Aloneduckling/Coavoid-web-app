@@ -1,0 +1,61 @@
+<% layout('layouts/boilerplate') %>
+
+        <h1 class="text-center">Crowd at <%= placeData.venue_name %></h1>
+
+        <!-- map here -->
+        <div class="mb-5 border border-dark rounded" id="map" style="width: 100%; height: 30rem"></div>
+
+        <!-- data here -->
+
+        <% placeData.traffic.analysis.forEach((day)=>{ %>
+            <h2 class="mb-3"><%= day.day_info.day_text %></h2>
+            <div class="card shadow mb-3 ">
+                <div class="row">
+                    <div class="col-md-6 p-3 bg-success text-light">
+                        <h3>Hours with less crowd: </h3>
+                        <% if(day.quiet_hours.length>0){ %> 
+                            <p> 
+                                <% day.quiet_hours.forEach(hour=>{%>
+                                    <% let suffix = hour >= 12 ? "PM ":"AM ";%>
+                                    <%= ((hour + 11) % 12 + 1) + suffix %> 
+                                <% }) %> 
+                            </p>
+                        
+                            <% }else{ %>  
+                                <p>
+                                    This place is quite busy on <%= day.day_info.day_text %> please avoid going there!
+                                </p>
+                            <% } %> 
+                    </div>
+
+                    <div class="col-md-6 p-3 bg-danger text-light">
+                        <h3>Hours with heavy crowd: </h3>
+                        <% if(day.busy_hours.length>0){ %> 
+                            <p> 
+                                <% day.busy_hours.forEach(hour=>{%>
+                                    <% let suffix = hour >= 12 ? "PM ":"AM ";%>
+                                    <%= ((hour + 11) % 12 + 1) + suffix %>, 
+                                <% }) %> 
+                            </p>
+                        
+                            <% }else{ %>  
+                                <p>
+                                    This place less busy on <%= day.day_info.day_text %> you can visit anytime, be sure to wear mask for safety resons!
+                                </p>
+                            <% } %> 
+                    </div>
+
+                </div>
+            </div>
+                
+        
+        <% }) %>
+
+
+
+        <script>
+            const mapToken = "<%- process.env.MAPBOX_TOKEN %>";
+            const place = <%- JSON.stringify(geometry) %>;   
+        </script>
+        <script src="/showMap.js">
+
